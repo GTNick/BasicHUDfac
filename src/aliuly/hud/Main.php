@@ -150,7 +150,21 @@ class Main extends PluginBase implements Listener,CommandExecutor {
 		$fn($this,$vars,$player);
 		return $vars;
 	}
-
+	public function getVars($player) {
+		$fP = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
+                                  $faction = $fP->getPlayerFaction($player->getName());
+		foreach ([
+		                "{faction}" => $this->factions->getFactions($player),
+		                "{power}" => $this->factions->getFactionPower($faction));
+		                "{MAXONLINE}" => $this->getServer()->getMaxPlayers();
+				"{bearing}" => self::bearing($player->getYaw()),
+			] as $a => $b) {
+			$vars[$a] = $b;
+		}
+  	$fn = $this->_getVars;
+		$fn($this,$vars,$player);
+		return $vars;
+	}
 	public function defaultGetMessage($player) {
 		$n = strtolower($player->getName());
 		if (isset($this->sendPopup[$n])) {
