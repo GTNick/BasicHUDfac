@@ -154,7 +154,7 @@ class Main extends PluginBase implements Listener,CommandExecutor {
 		$fP = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
                                   $faction = $fP->getPlayerFaction($player->getName());
 		foreach ([
-		                "{faction}" => $this->getFactions($player->getFaction),
+		                "{faction}" => $this->getPlayerFaction($player),
 		                "{power}" => $this->getFactionPower($player->getFaction->getFactionPower));
 		                "{MAXONLINE}" => $this->getServer()->getMaxPlayers();
 				"{bearing}" => self::bearing($player->getYaw()),
